@@ -19,3 +19,10 @@ jobs:
           cabal-version: 3.4
           enable-stack: ${{ matrix.stack }}
           stack-version: 'latest'
+      - name: stack cache
+        if: {{ matrix.stack }}
+        uses: actions/cache@v1
+        with:
+          path: ~/.stack
+          key: ${{ runner.os }}-${{ hashFiles('stack.yaml') }}
+          restore-keys: ${{ runner.os }}-
