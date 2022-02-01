@@ -3,6 +3,7 @@ name: haskell-ci
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    experimental: false
     strategy:
       matrix:
         ghc: ['8.8.4', '8.10.7', '9.2.1']
