@@ -72,3 +72,6 @@ jobs:
         run: |
           stack update
           stack build --test --no-install-ghc --system-ghc
+      - if: matrix.docspec
+        name: run cabal-docspec
+        run: cabal-docspec
