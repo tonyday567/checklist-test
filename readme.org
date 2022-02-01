@@ -1,0 +1,29 @@
+
+* checklist-test
+
+[[https://hackage.haskell.org/package/checklist-test][https://img.shields.io/hackage/v/checklist-test.svg]]
+[[https://github.com/tonyday567/checklist-test/actions?query=workflow%3Ahaskell-ci][https://github.com/tonyday567/checklist-test/workflows/haskell-ci/badge.svg]]
+
+~checklist-test~ is a new package.
+
+* Usage
+
+#+begin_src haskell :results output
+import Lib
+#+end_src
+
+* Development
+
+#+begin_src haskell :results output
+:set prompt "> "
+:set -Wno-type-defaults
+:set -Wno-name-shadowing
+:set -XOverloadedStrings
+#+end_src
+
+check
+
+#+begin_src haskell :results output :export both
+let x = "ok"
+putStrLn x
+#+end_src

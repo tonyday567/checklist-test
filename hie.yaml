@@ -1,0 +1,8 @@
+cradle:
+  cabal:
+    - path: "./app/checklist-test.hs"
+      component: "checklist-test:exe:checklist-test"
+    - path: "./src"
+      component: "checklist-test:lib"
+    - path: "./test/checklist-test.hs"
+      component: "checklist-test:test:checklist-test"
