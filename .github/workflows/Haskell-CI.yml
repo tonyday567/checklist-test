@@ -11,7 +11,7 @@ jobs:
         runcabal: [true]
         experimental: [false]
     continue-on-error: ${{ matrix.experimental }}
-    name: ghc ${{ matrix.ghc }} ${{ matrix.os }} stack ${{ matrix.stack }}
+    name: ghc ${{ matrix.ghc }} ${{ matrix.os }} ${{ matrix.runstack }} ${{ matrix.runcabal }}
     steps:
       - name: clone project
         uses: actions/checkout@v2
@@ -22,14 +22,14 @@ jobs:
           enable-stack: ${{ matrix.stack }}
           stack-version: 'latest'
       - name: cabal cache
-        if: matrix.runcabal
+        if: ! matrix.runstack
         uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-${{ matrix.ghc }}-${{ github.sha }}
           path: ~/.cabal/store
           restore-keys: ${{ runner.os }}-${{ matrix.ghc }}-
       - name: cabal build
-        if: matrix.runcabal
+        if: ! matrix.runstack
         run: |
           cabal configure --enable-tests
           cabal build
