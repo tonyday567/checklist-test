@@ -13,9 +13,11 @@ jobs:
           - os: windows-latest
             ghc: '8.10.7'
             experimental: true
+            manager: 'cabal'
           - os: macOS-latest
             ghc: '8.10.7'
             experimental: true
+            manager: 'cabal'
           - os: ubuntu-latest
             ghc: '8.10.7'
             experimental: true
@@ -23,6 +25,7 @@ jobs:
           - os: ubuntu-latest
             ghc: '8.10.7'
             experimental: true
+            manager: 'cabal'
             docspec: true
     continue-on-error: true
     name: ghc ${{ matrix.ghc }} ${{ matrix.os }} ${{ matrix.manager }}
