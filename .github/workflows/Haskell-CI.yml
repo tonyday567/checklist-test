@@ -7,8 +7,8 @@ jobs:
       matrix:
         ghc: ['8.10.7']
         os: [ubuntu-latest]
-        stack: false
-        experimental: false
+        stack: [false]
+        experimental: [false]
     continue-on-error: ${{ matrix.experimental }}
     name: ghc ${{ matrix.ghc }} ${{ matrix.os }} stack ${{ matrix.stack }}
     steps:
