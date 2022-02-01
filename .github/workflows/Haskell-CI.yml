@@ -9,6 +9,7 @@ jobs:
         os: [ubuntu-latest]
         manager: ['cabal']
         docspec: [false]
+        experimental: [false]
         include:
           - os: windows-latest
             ghc: '8.10.7'
