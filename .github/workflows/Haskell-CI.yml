@@ -13,6 +13,13 @@ jobs:
           - os: windows-latest
             ghc: '8.10.7'
             experimental: true
+          - os: macOS-latest
+            ghc: '8.10.7'
+            experimental: true
+          - os: ubuntu-latest
+            ghc: '8.10.7'
+            experimental: true
+            runstack: true
     continue-on-error: ${{ matrix.experimental }}
     name: ghc ${{ matrix.ghc }} ${{ matrix.os }} ${{ matrix.runstack }} ${{ matrix.runcabal }}
     steps:
