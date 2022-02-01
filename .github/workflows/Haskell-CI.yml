@@ -5,25 +5,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        ghc: ['8.8.4', '8.10.7', '9.2.1']
+        ghc: ['8.10.7']
         os: ubuntu-latest
         stack: false
         experimental: false
-        include:
-          - os: windows-latest
-            ghc: '8.10.7'
-            experimental: true
-            stack: false
-        include:
-          - os: ubuntu-latest
-            ghc: '8.10.7'
-            experimental: true
-            stack: true
-        include:
-          - os: macOS-latest
-            ghc: '8.10.7'
-            experimental: true
-            stack: false
     continue-on-error: ${{ matrix.experimental }}
     name: ghc ${{ matrix.ghc }} ${{ matrix.os }} stack ${{ matrix.stack }}
     steps:
@@ -36,13 +21,6 @@ jobs:
           cabal-version: 3.6.2.0
           enable-stack: ${{ matrix.stack }}
           stack-version: 'latest'
-      - name: stack cache
-        if: matrix.stack
-        uses: actions/cache@v1
-        with:
-          path: ~/.stack
-          key: ${{ runner.os }}-${{ hashFiles('stack.yaml') }}
-          restore-keys: ${{ runner.os }}-
       - name: cabal cache
         uses: actions/cache@v2
         with:
@@ -50,12 +28,21 @@ jobs:
           path: ~/.cabal/store
           restore-keys: ${{ runner.os }}-${{ matrix.ghc }}-
       - name: cabal build
+        if: !matrix.stack
         run: |
           cabal update
           cabal configure --enable-tests
           cabal build
           cabal test
+      - name: stack cache
+        if: matrix.stack
+        uses: actions/cache@v1
+        with:
+          path: ~/.stack
+          key: ${{ runner.os }}-${{ hashFiles('stack.yaml') }}
+          restore-keys: ${{ runner.os }}-
       - name: stack build
+        if: matrix.stack
         run: |
           stack update
           stack build --test --no-install-ghc --system-ghc
