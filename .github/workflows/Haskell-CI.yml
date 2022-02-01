@@ -4,11 +4,11 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
-      experimental: false
       matrix:
         ghc: ['8.8.4', '8.10.7', '9.2.1']
         os: [ubuntu-latest]
         manager: ['cabal']
+        experimental: [false]
         include:
           - os: windows-latest
             ghc: '8.10.7'
