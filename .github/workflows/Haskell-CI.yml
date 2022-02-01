@@ -16,9 +16,7 @@ jobs:
         uses: haskell/actions/setup@v1
         with:
           ghc-version: ${{ matrix.ghc }}
-          cabal-version: 'latest'
           enable-stack: ${{ matrix.stack }}
-          stack-version: 'latest'
       - name: stack cache
         if: {{ matrix.stack }} == 'true'
         uses: actions/cache@v1
