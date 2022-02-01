@@ -8,7 +8,6 @@ jobs:
         ghc: ['8.8.4', '8.10.7', '9.2.1']
         os: [ubuntu-latest]
         manager: ['cabal']
-        experimental: [false]
         include:
           - os: windows-latest
             ghc: '8.10.7'
@@ -29,7 +28,7 @@ jobs:
         uses: haskell/actions/setup@v1
         with:
           ghc-version: ${{ matrix.ghc }}
-          enable-stack: ${{ matrix.stack }}
+          enable-stack: ${{ matrix.manager == 'stack' }}
           stack-version: 'latest'
       - name: cabal cache
         if: (matrix.manager == 'cabal')
