@@ -22,14 +22,14 @@ jobs:
           enable-stack: ${{ matrix.stack }}
           stack-version: 'latest'
       - name: cabal cache
-        if: ! (matrix.runstack == 'true')
+        if: (! (matrix.runstack == 'true'))
         uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-${{ matrix.ghc }}-${{ github.sha }}
           path: ~/.cabal/store
           restore-keys: ${{ runner.os }}-${{ matrix.ghc }}-
       - name: cabal build
-        if: ! (matrix.runstack == 'true')
+        if: (! (matrix.runstack == 'true'))
         run: |
           cabal configure --enable-tests
           cabal build
