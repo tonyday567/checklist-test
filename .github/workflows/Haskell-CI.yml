@@ -8,8 +8,23 @@ jobs:
         ghc: ['8.10.7']
         os: [ubuntu-latest]
         runstack: [false]
-        runcabal: [true]
         experimental: [false]
+        include:
+          - os: windows-latest
+            ghc: '8.10.7'
+            experimental: true
+            runstack: false
+        include:
+          - os: ubuntu-latest
+            ghc: '8.10.7'
+            experimental: true
+            runstack: true
+        include:
+          - os: macOS-latest
+            ghc: '8.10.7'
+            experimental: true
+            runstack: false
+
     continue-on-error: ${{ matrix.experimental }}
     name: ghc ${{ matrix.ghc }} ${{ matrix.os }} ${{ matrix.runstack }} ${{ matrix.runcabal }}
     steps:
