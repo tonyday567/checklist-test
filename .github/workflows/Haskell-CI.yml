@@ -14,8 +14,6 @@ jobs:
         uses: actions/checkout@v2
       - name: setup stanza
         uses: haskell/actions/setup@v1
-        with:
-          ghc-version: ${{ matrix.ghc }}
       - name: stack cache
         if: {{ matrix.stack }} == 'true'
         uses: actions/cache@v1
