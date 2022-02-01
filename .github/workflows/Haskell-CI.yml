@@ -20,7 +20,7 @@ jobs:
           enable-stack: ${{ matrix.stack }}
           stack-version: 'latest'
       - name: stack cache
-        if: {{ matrix.stack == true }}
+        if: matrix.stack == 'true'
         uses: actions/cache@v1
         with:
           path: ~/.stack
