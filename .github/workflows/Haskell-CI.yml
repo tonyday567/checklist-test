@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         ghc: ['8.10.7']
-        os: ubuntu-latest
+        os: [ubuntu-latest]
         stack: false
         experimental: false
     continue-on-error: ${{ matrix.experimental }}
