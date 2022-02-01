@@ -8,7 +8,14 @@ jobs:
         ghc: ['8.8.4', '8.10.7', '9.2.1']
         os: [ubuntu-latest, macOS-latest, windows-latest]
         stack: [true, false]
-    name: ghc ${{ matrix.ghc }} ${{ matrix.os }}
+    name: ghc ${{ matrix.ghc }} ${{ matrix.os }} stack ${{ matrix.stack }}
     steps:
       - name: clone project
         uses: actions/checkout@v2
+      - name: setup stanza
+        uses: haskell/actions/setup@v1
+        with:
+          ghc-version: ${{ matrix.ghc }}
+          cabal-version: 3.4
+          enable-stack: true
+          stack-version: 'latest'
