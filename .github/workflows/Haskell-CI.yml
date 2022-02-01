@@ -19,7 +19,6 @@ jobs:
         uses: haskell/actions/setup@v1
         with:
           ghc-version: ${{ matrix.ghc }}
-          cabal-version: 3.6.2.0
           enable-stack: ${{ matrix.stack }}
           stack-version: 'latest'
       - name: cabal cache
@@ -32,7 +31,6 @@ jobs:
       - name: cabal build
         if: matrix.runcabal
         run: |
-          cabal update
           cabal configure --enable-tests
           cabal build
           cabal test
