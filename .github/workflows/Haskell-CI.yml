@@ -56,6 +56,7 @@ jobs:
       - name: cabal build
         if: (matrix.manager == 'cabal')
         run: |
+          cabal update
           cabal configure --enable-tests
           cabal build
           cabal test
