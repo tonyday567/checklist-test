@@ -5,7 +5,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        ghc: ['8.10.4']
+        ghc: ['8.8.4', '8.10.7', '9.2.1']
+        cabal: ['3.6.2.0']
         os: [ubuntu-latest, macOS-latest, windows-latest]
         stack: [true, false]
     name: ghc ${{ matrix.ghc }} ${{ matrix.os }}
@@ -16,7 +17,6 @@ jobs:
         uses: haskell/actions/setup@v1
         with:
           ghc-version: ${{ matrix.ghc }}
-          cabal-version: 3.4
           enable-stack: true
           stack-version: 'latest'
       - name: stack cache
